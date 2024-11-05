@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Genie - Phone Number Generator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        }
+
+        // Check for saved dark mode preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+    <style>
+        .dark {
+            color-scheme: dark;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .quick-nav {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+
+        .quick-nav a {
+            position: relative;
+        }
+
+        .quick-nav .tooltip {
+            position: absolute;
+            right: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            margin-right: 10px;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s;
+            white-space: nowrap;
+        }
+
+        .quick-nav a:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .feature-screenshot {
+            aspect-ratio: 9/19.5;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-10 transition-colors duration-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <img src="/api/placeholder/32/32" alt="Contact Genie Logo" class="h-8 w-8">
+                    <span class="ml-2 text-xl font-bold text-gray-800 dark:text-white">Contact Genie</span>
+                </div>
+                <div class="flex items-center space-x-8">
+                    <button onclick="toggleDarkMode()" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:inline"></i>
+                    </button>
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="#features" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Features</a>
+                        <a href="#how-it-works" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">How It Works</a>
+                        <a href="#export" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Export Options</a>
+                        <a href="https://play.google.com/store" target="_blank" class="bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600">
+                            Download App
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Quick Navigation -->
+    <div class="quick-nav hidden lg:block">
+        <div class="flex flex-col space-y-4">
+            <a href="#top" class="bg-blue-600 dark:bg-blue-500 text-white p-2 rounded-full hover:bg-blue-700 dark:hover:bg-blue-600">
+                <i class="fas fa-arrow-up"></i>
+                <span class="tooltip bg-gray-800 text-white px-2 py-1 rounded">Top</span>
+            </a>
+            <a href="#features" class="bg-blue-600 dark:bg-blue-500 text-white p-2 rounded-full hover:bg-blue-700 dark:hover:bg-blue-600">
+                <i class="fas fa-star"></i>
+                <span class="tooltip bg-gray-800 text-white px-2 py-1 rounded">Features</span>
+            </a>
+            <a href="#how-it-works" class="bg-blue-600 dark:bg-blue-500 text-white p-2 rounded-full hover:bg-blue-700 dark:hover:bg-blue-600">
+                <i class="fas fa-info"></i>
+                <span class="tooltip bg-gray-800 text-white px-2 py-1 rounded">How It Works</span>
+            </a>
+            <a href="#export" class="bg-blue-600 dark:bg-blue-500 text-white p-2 rounded-full hover:bg-blue-700 dark:hover:bg-blue-600">
+                <i class="fas fa-file-export"></i>
+                <span class="tooltip bg-gray-800 text-white px-2 py-1 rounded">Export</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-12 md:pt-32 md:pb-20 bg-gradient-to-r from-blue-500 to-blue-700 dark:from-blue-600 dark:to-blue-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="text-white">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                        Generate Phone Numbers Effortlessly
+                    </h1>
+                    <p class="text-xl mb-8">
+                        Create custom phone number lists with country codes, sequential generation, and multiple export options.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://play.google.com/store" target="_blank" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100">
+                            Get Started
+                        </a>
+                        <a href="https://youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600">
+                            Watch Demo
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <img src="/api/placeholder/600/400" alt="App Preview" class="rounded-lg shadow-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white dark:bg-gray-800 transition-colors duration-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 dark:text-white">Key Features</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-6 border dark:border-gray-700 rounded-lg hover:shadow-lg transition-shadow">
+                    <div class="feature-screenshot mb-6">
+                        <img src="/api/placeholder/280/607" alt="Country Code Feature" class="rounded-lg shadow-md w-full h-full object-cover">
+                    </div>
+                    <i class="fas fa-globe text-blue-600 dark:text-blue-400 text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3 dark:text-white">Country Code Support</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Generate phone numbers for any country with automatic country code integration.</p>
+                </div>
+                <div class="p-6 border dark:border-gray-700 rounded-lg hover:shadow-lg transition-shadow">
+                    <div class="feature-screenshot mb-6">
+                        <img src="/api/placeholder/280/607" alt="Sequential Generation Feature" class="rounded-lg shadow-md w-full h-full object-cover">
+                    </div>
+                    <i class="fas fa-sort-numeric-up text-blue-600 dark:text-blue-400 text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3 dark:text-white">Sequential Generation</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Create number sequences with custom starting points and increments.</p>
+                </div>
+                <div class="p-6 border dark:border-gray-700 rounded-lg hover:shadow-lg transition-shadow">
+                    <div class="feature-screenshot mb-6">
+                        <img src="/api/placeholder/280/607" alt="WhatsApp Integration Feature" class="rounded-lg shadow-md w-full h-full object-cover">
+                    </div>
+                    <i class="fab fa-whatsapp text-blue-600 dark:text-blue-400 text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3 dark:text-white">WhatsApp Integration</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Seamlessly manage and export contacts for WhatsApp business usage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Export Options -->
+    <section id="export" class="py-20 bg-white dark:bg-gray-800 transition-colors duration-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 dark:text-white">Export Options</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-6 bg-gray-50 dark:bg-gray-700 rounded-lg text-center">
+                    <img src="/api/placeholder/64/64" alt="VCF Icon" class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="font-semibold mb-2 dark:text-white">VCF Format</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Perfect for phone contacts</p>
+                </div>
+                <div class="p-6 bg-gray-50 dark:bg-gray-700 rounded-lg text-center">
+                    <img src="/api/placeholder/64/64" alt="CSV Icon" class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="font-semibold mb-2 dark:text-white">CSV Format</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Ideal for spreadsheets</p>
+                </div>
+                <div class="p-6 bg-gray-50 dark:bg-gray-700 rounded-lg text-center">
+                    <img src="/api/placeholder/64/64" alt="TXT Icon" class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="font-semibold mb-2 dark:text-white">TXT Format</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Simple text listing</p>
+                </div>
+                <div class="p-6 bg-gray-50 dark:bg-gray-700 rounded-lg text-center">
+                    <img src="/api/placeholder/64/64" alt="XLSX Icon" class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="font-semibold mb-2 dark:text-white">XLSX Format</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Excel compatibility</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rest of the sections with dark mode support... -->
+</body>
+              </html>

@@ -3,258 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Genie - Phone Number Generator</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Phone Number Generator - Contact List Maker</title>
     <style>
-        html {
-            scroll-behavior: smooth;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        .drawer {
-            transition: transform 0.3s ease-in-out;
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2d3436;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .drawer.open {
-            transform: translateX(0);
+        header {
+            background: #4a90e2;
+            color: white;
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .drawer.closed {
-            transform: translateX(100%);
+        header h1 {
+            font-size: 2.5em;
+            margin: 10px 0;
         }
 
-        .feature-screenshot {
-            aspect-ratio: 9/19.5;
-            max-width: 280px;
-            margin: 0 auto;
+        .content-container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 40px 20px;
         }
 
-        /* Dark mode styles */
-        .dark body {
-            background-color: #1a1a1a;
-            color: #ffffff;
+        .section {
+            margin-bottom: 50px;
         }
 
-        .dark .bg-white {
-            background-color: #2d2d2d;
+        .section h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #4a90e2;
         }
 
-        .dark .text-gray-800 {
-            color: #ffffff;
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
         }
 
-        .dark .text-gray-600 {
-            color: #d1d1d1;
+        .feature-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            max-width: 250px;
+            text-align: center;
+            transition: transform 0.3s;
         }
 
-        .dark .border {
-            border-color: #404040;
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
         }
 
-        .dark .bg-gray-50 {
-            background-color: #2d2d2d;
+        .feature-card h3 {
+            margin: 10px 0;
+            font-size: 1.2em;
+            color: #333;
         }
 
-        .dark .hover\:bg-gray-100:hover {
-            background-color: #3d3d3d;
+        .feature-card p {
+            font-size: 0.9em;
+            color: #636e72;
+        }
+
+        .download-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .download-button {
+            background: #4a90e2;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .download-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Contact Section */
+        .contact-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            width: 100%;
+            max-width: 250px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-wrapper {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 15px;
+            background: #f1f1f1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-wrapper img {
+            width: 35px;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
+
+        footer p {
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .feature-card, .contact-card {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 transition-colors duration-200">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-lg fixed w-full z-20">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <img src="/api/placeholder/32/32" alt="Contact Genie Logo" class="h-8 w-8">
-                    <span class="ml-2 text-xl font-bold text-gray-800">Contact Genie</span>
-                </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#features" class="text-gray-600 hover:text-blue-600">Features</a>
-                    <a href="#how-it-works" class="text-gray-600 hover:text-blue-600">How It Works</a>
-                    <a href="#export" class="text-gray-600 hover:text-blue-600">Export Options</a>
-                    <button id="menuButton" class="text-gray-600 hover:text-blue-600">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
+<body>
 
-    <!-- Side Drawer -->
-    <div id="drawer" class="drawer closed fixed top-0 right-0 h-full w-80 bg-white shadow-lg z-30 overflow-y-auto">
-        <div class="p-4">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-lg font-semibold">Menu</h3>
-                <button id="closeDrawer" class="text-gray-600 hover:text-blue-600">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            
-            <!-- Dark Mode Toggle -->
-            <div class="flex items-center justify-between p-4 border-b">
-                <span>Dark Mode</span>
-                <button id="darkModeToggle" class="w-12 h-6 bg-gray-300 rounded-full relative">
-                    <span class="w-4 h-4 bg-white rounded-full absolute left-1 top-1 transition-transform duration-200"></span>
-                </button>
-            </div>
+    <header>
+        <h1>Phone Number Generator & Contact List Maker</h1>
+        <p>Generate, Export, and Manage Contacts Effortlessly</p>
+    </header>
 
-            <!-- Quick Links -->
-            <div class="mt-4 space-y-2">
-                <a href="#features" class="block p-2 hover:bg-gray-100">Features</a>
-                <a href="#how-it-works" class="block p-2 hover:bg-gray-100">How It Works</a>
-                <a href="#export" class="block p-2 hover:bg-gray-100">Export Options</a>
-                <a href="#download" class="block p-2 hover:bg-gray-100">Download</a>
+    <div class="content-container">
+
+        <!-- Features Section -->
+        <section class="section" id="features">
+            <h2>Features</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Auto-Increment Phone Numbers</h3>
+                    <p>Quickly generate phone numbers with incremental steps based on your input criteria.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Export Contacts</h3>
+                    <p>Save generated contacts in multiple formats including VCF, CSV, TXT, and XLSX.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Bulk Operations</h3>
+                    <p>Handle large batches of contacts efficiently with bulk operations.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Easy Import & Export</h3>
+                    <p>Seamlessly import contacts from files and export generated contacts for easy use.</p>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Download Section -->
+        <section class="section download-section" id="download">
+            <h2>Download the App</h2>
+            <a href="#" class="download-button">Get it on Google Play</a>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section" id="contact">
+            <h2>Contact Us</h2>
+            <div class="contact-methods">
+                <div class="contact-card">
+                    <div class="icon-wrapper">
+                        <img src="https://micokpori.github.io/Contact_Genie/email-icon.svg" alt="Email icon">
+                    </div>
+                    <h3>Email</h3>
+                    <p>For detailed inquiries, reach us via email</p>
+                    <a href="mailto:okporiakumiracle@gmail.com" class="download-button">Send Email</a>
+                </div>
+                <div class="contact-card">
+                    <div class="icon-wrapper">
+                        <img src="https://micokpori.github.io/Contact_Genie/whatsapp-icon.svg" alt="WhatsApp icon">
+                    </div>
+                    <h3>WhatsApp</h3>
+                    <p>Contact us for quick responses on WhatsApp</p>
+                    <a href="https://wa.me/+2349039723711" class="download-button">Chat Now</a>
+                </div>
+                <div class="contact-card">
+                    <div class="icon-wrapper">
+                        <img src="https://micokpori.github.io/Contact_Genie/telegram-icon.svg" alt="Telegram icon">
+                    </div>
+                    <h3>Telegram</h3>
+                    <p>Message us on Telegram for instant support</p>
+                    <a href="https://t.me/Burning_Heaven" class="download-button">Message Us</a>
+                </div>
+            </div>
+        </section>
+
     </div>
 
-    <!-- Hero Section -->
-    <section class="pt-24 pb-12 md:pt-32 md:pb-20 bg-gradient-to-r from-blue-500 to-blue-700">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div class="text-white">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-6">
-                        Generate Phone Numbers Effortlessly
-                    </h1>
-                    <p class="text-xl mb-8">
-                        Create custom phone number lists with country codes, sequential generation, and multiple export options.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="https://play.google.com/store" target="_blank" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100">
-                            Get Started
-                        </a>
-                        <a href="https://youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600">
-                            Watch Demo
-                        </a>
-                    </div>
-                </div>
-                <div class="hidden md:block">
-                    <img src="/api/placeholder/600/400" alt="App Preview" class="rounded-lg shadow-xl">
-                </div>
-            </div>
-        </div>
-    </section>
+    <footer>
+        <p>&copy; 2023 Phone Number Generator App. All rights reserved.</p>
+    </footer>
 
-    <!-- Features Section -->
-    <section id="features" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center mb-12">Key Features</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-6 border rounded-lg hover:shadow-lg transition-shadow">
-                    <div class="feature-screenshot mb-6">
-                        <img src="/api/placeholder/280/607" alt="Country Code Feature" class="rounded-lg shadow-md w-full h-full object-cover">
-                    </div>
-                    <i class="fas fa-globe text-blue-600 text-3xl mb-4"></i>
-                    <h3 class="text-xl font-semibold mb-3">Country Code Support</h3>
-                    <p class="text-gray-600">Generate phone numbers for any country with automatic country code integration.</p>
-                </div>
-                <div class="p-6 border rounded-lg hover:shadow-lg transition-shadow">
-                    <div class="feature-screenshot mb-6">
-                        <img src="/api/placeholder/280/607" alt="Sequential Generation Feature" class="rounded-lg shadow-md w-full h-full object-cover">
-                    </div>
-                    <i class="fas fa-sort-numeric-up text-blue-600 text-3xl mb-4"></i>
-                    <h3 class="text-xl font-semibold mb-3">Sequential Generation</h3>
-                    <p class="text-gray-600">Create number sequences with custom starting points and increments.</p>
-                </div>
-                <div class="p-6 border rounded-lg hover:shadow-lg transition-shadow">
-                    <div class="feature-screenshot mb-6">
-                        <img src="/api/placeholder/280/607" alt="WhatsApp Integration Feature" class="rounded-lg shadow-md w-full h-full object-cover">
-                    </div>
-                    <i class="fab fa-whatsapp text-blue-600 text-3xl mb-4"></i>
-                    <h3 class="text-xl font-semibold mb-3">WhatsApp Integration</h3>
-                    <p class="text-gray-600">Seamlessly manage and export contacts for WhatsApp business usage.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center mb-12">How It Works</h2>
-            <div class="grid md:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4">1</div>
-                    <h3 class="font-semibold mb-2">Select Country</h3>
-                    <p class="text-gray-600">Choose your target country code</p>
-                </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4">2</div>
-                    <h3 class="font-semibold mb-2">Set Parameters</h3>
-                    <p class="text-gray-600">Define start number and increment</p>
-                </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4">3</div>
-                    <h3 class="font-semibold mb-2">Generate Numbers</h3>
-                    <p class="text-gray-600">Create your custom number list</p>
-                </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4">4</div>
-                    <h3 class="font-semibold mb-2">Export</h3>
-                    <p class="text-gray-600">Save in your preferred format</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Export Options Section -->
-    <section id="export" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center mb-12">Export Options</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="p-6 bg-gray-50 rounded-lg text-center">
-                    <img src="/api/placeholder/64/64" alt="VCF Icon" class="w-16 h-16 mx-auto mb-4">
-                    <h3 class="font-semibold mb-2">VCF Format</h3>
-                    <p class="text-gray-600">Perfect for phone contacts</p>
-                </div>
-                <div class="p-6 bg-gray-50 rounded-lg text-center">
-                    <img src="/api/placeholder/64/64" alt="CSV Icon" class="w-16 h-16 mx-auto mb-4">
-                    <h3 class="font-semibold mb-2">CSV Format</h3>
-                    <p class="text-gray-600">Ideal for spreadsheets</p>
-                </div>
-                <div class="p-6 bg-gray-50 rounded-lg text-center">
-                    <img src="/api/placeholder/64/64" alt="TXT Icon" class="w-16 h-16 mx-auto mb-4">
-                    <h3 class="font-semibold mb-2">TXT Format</h3>
-                    <p class="text-gray-600">Simple text listing</p>
-                </div>
-                <div class="p-6 bg-gray-50 rounded-lg text-center">
-                    <img src="/api/placeholder/64/64" alt="XLSX Icon" class="w-16 h-16 mx-auto mb-4">
-                    <h3 class="font-semibold mb-2">XLSX Format</h3>
-                    <p class="text-gray-600">Excel compatibility</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Download Section -->
-    <section id="download" class="py-20 bg-blue-600">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold text-white mb-8">Download Contact Genie Today</h2>
-            <p class="text-xl text-white mb-8">Start generating phone numbers efficiently with our easy-to-use Android app</p>
-            <a href="https://play.google.com/store" target="_blank" class="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100">
-                Download from Google Play
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Contact Genie</h3>
-                    <p class="text-gray-400">The ultimate phone number generator for Android</p>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#features" class="text-gray-400 hover:text-white">Features</a></li>
-                        <li><a href="#how-it-works" class="text-gray-400 hover:text-white">How It Works</a></li>
-                        <li><a href="#export" class="text-gray-400 hover:text-white">Export Options</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Legal</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#
+</body>
+</html>

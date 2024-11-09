@@ -3,238 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phone Number Generator - Contact List Maker</title>
+    <title>Phone Number Generator App</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    
     <style>
+        /* Reset and Basic Styling */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: #2d3436;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            background-color: #f9f9f9;
         }
 
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* Header Styling */
         header {
-            background: #4a90e2;
-            color: white;
-            width: 100%;
+            background-color: #2b2f77;
+            color: #fff;
             padding: 20px 0;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
-            font-size: 2.5em;
-            margin: 10px 0;
+            font-size: 1.8em;
+            margin: 0;
         }
 
-        .content-container {
-            width: 100%;
-            max-width: 1200px;
+        header nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        header nav ul li {
+            display: inline;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        header nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section Styling */
+        #hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #4a5c8a, #7283b6);
+            color: #fff;
+        }
+
+        #hero h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        #hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .btn-primary {
+            background-color: #ff9800;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .btn-primary:hover {
+            background-color: #e38900;
+        }
+
+        /* Features & Benefits Section */
+        section {
             padding: 40px 20px;
         }
 
-        .section {
-            margin-bottom: 50px;
-        }
-
-        .section h2 {
-            text-align: center;
+        section h2 {
             font-size: 2em;
             margin-bottom: 20px;
-            color: #4a90e2;
-        }
-
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            max-width: 250px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        }
-
-        .feature-card h3 {
-            margin: 10px 0;
-            font-size: 1.2em;
             color: #333;
-        }
-
-        .feature-card p {
-            font-size: 0.9em;
-            color: #636e72;
-        }
-
-        .download-section {
             text-align: center;
-            margin-top: 40px;
         }
 
-        .download-button {
-            background: #4a90e2;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 25px;
-            font-weight: bold;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .download-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Contact Section */
-        .contact-methods {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-
-        .contact-card {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
+        section ul {
+            list-style: none;
+            padding: 0;
             text-align: center;
-            width: 100%;
-            max-width: 250px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            color: #555;
         }
 
-        .icon-wrapper {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 15px;
-            background: #f1f1f1;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        section ul li {
+            font-size: 1.1em;
+            padding: 10px;
         }
 
-        .icon-wrapper img {
-            width: 35px;
+        /* Download Section */
+        #download {
+            text-align: center;
+            background-color: #f2f2f2;
         }
 
         /* Footer */
         footer {
-            background: #333;
-            color: white;
-            width: 100%;
             text-align: center;
-            padding: 20px;
-            margin-top: auto;
+            padding: 20px 0;
+            background-color: #2b2f77;
+            color: #fff;
         }
 
         footer p {
             font-size: 0.9em;
         }
-
-        @media (max-width: 768px) {
-            .feature-card, .contact-card {
-                max-width: 100%;
-            }
-        }
     </style>
 </head>
 <body>
-
     <header>
-        <h1>Phone Number Generator & Contact List Maker</h1>
-        <p>Generate, Export, and Manage Contacts Effortlessly</p>
+        <div class="container">
+            <h1>Phone Number Generator</h1>
+            <nav>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#benefits">Benefits</a></li>
+                    <li><a href="#download">Download</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <div class="content-container">
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="container">
+                <h2>Effortlessly Generate and Manage Phone Numbers</h2>
+                <p>Your ultimate solution for seamless contact list creation and exportation.</p>
+                <a href="#download" class="btn-primary">Download Now</a>
+            </div>
+        </section>
 
         <!-- Features Section -->
-        <section class="section" id="features">
-            <h2>Features</h2>
-            <div class="features">
-                <div class="feature-card">
-                    <h3>Auto-Increment Phone Numbers</h3>
-                    <p>Quickly generate phone numbers with incremental steps based on your input criteria.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Export Contacts</h3>
-                    <p>Save generated contacts in multiple formats including VCF, CSV, TXT, and XLSX.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Bulk Operations</h3>
-                    <p>Handle large batches of contacts efficiently with bulk operations.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Easy Import & Export</h3>
-                    <p>Seamlessly import contacts from files and export generated contacts for easy use.</p>
-                </div>
+        <section id="features">
+            <div class="container">
+                <h2>Key Features</h2>
+                <ul>
+                    <li>Choose Country Code for Phone Numbers</li>
+                    <li>Incremental Number Generation</li>
+                    <li>Export in Multiple Formats (VCF, CSV, TXT, XLSX)</li>
+                    <li>Manage Contact Lists Efficiently</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section id="benefits">
+            <div class="container">
+                <h2>Why Choose Our App?</h2>
+                <ul>
+                    <li>Save Time and Effort in Contact Creation</li>
+                    <li>Boost Efficiency with Bulk Number Generation</li>
+                    <li>Organize Contacts Effortlessly with Export Options</li>
+                </ul>
             </div>
         </section>
 
         <!-- Download Section -->
-        <section class="section download-section" id="download">
-            <h2>Download the App</h2>
-            <a href="#" class="download-button">Get it on Google Play</a>
-        </section>
-
-        <!-- Contact Section -->
-        <section class="section" id="contact">
-            <h2>Contact Us</h2>
-            <div class="contact-methods">
-                <div class="contact-card">
-                    <div class="icon-wrapper">
-                        <img src="https://micokpori.github.io/Contact_Genie/email-icon.svg" alt="Email icon">
-                    </div>
-                    <h3>Email</h3>
-                    <p>For detailed inquiries, reach us via email</p>
-                    <a href="mailto:okporiakumiracle@gmail.com" class="download-button">Send Email</a>
-                </div>
-                <div class="contact-card">
-                    <div class="icon-wrapper">
-                        <img src="https://micokpori.github.io/Contact_Genie/whatsapp-icon.svg" alt="WhatsApp icon">
-                    </div>
-                    <h3>WhatsApp</h3>
-                    <p>Contact us for quick responses on WhatsApp</p>
-                    <a href="https://wa.me/+2349039723711" class="download-button">Chat Now</a>
-                </div>
-                <div class="contact-card">
-                    <div class="icon-wrapper">
-                        <img src="https://micokpori.github.io/Contact_Genie/telegram-icon.svg" alt="Telegram icon">
-                    </div>
-                    <h3>Telegram</h3>
-                    <p>Message us on Telegram for instant support</p>
-                    <a href="https://t.me/Burning_Heaven" class="download-button">Message Us</a>
-                </div>
+        <section id="download">
+            <div class="container">
+                <h2>Download Now</h2>
+                <p>Available on Google Play</p>
+                <a href="https://play.google.com/store/apps/details?id=your.app.package" class="btn-primary">Get it on Google Play</a>
             </div>
         </section>
+    </main>
 
-    </div>
-
+    <!-- Footer Section -->
     <footer>
-        <p>&copy; 2023 Phone Number Generator App. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2023 Phone Number Generator App. All rights reserved.</p>
+        </div>
     </footer>
 
+    <script>
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
